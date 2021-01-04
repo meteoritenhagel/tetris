@@ -5,31 +5,33 @@
 #include "types.h"
 
 #include <SDL.h>
+#include <SDL_ttf.h>
 
 #include <cstdlib>
 #include <iostream>
 
-//void text_render()
-//{
-//    std::cout << "          ------------\n";
-//    for (SizeType i = 0; i < height; ++i)
-//    {
-//        std::cout << "          <";
-//        for (SizeType j = 0; j < width; ++j)
-//        {
-//            const char character = (get_cell_state(i, j)) ? '#' : ' ';
-//            std::cout << character;
-//        }
-//        std::cout << '>' << "  CIR: " << (int) _cellsInRow[i] << '\n';
-//    }
-//    std::cout << "          ------------\n";
-//    // reset_lines(height + 2);
-//}
-//
-//void clean_screen()
-//{
-//    printf("\033c");
-//}
+void clean_screen()
+{
+    printf("\033c");
+}
+
+template<SizeType height, SizeType width>
+void render_console(const GameBoard<height, width> &gameBoard)
+{
+    std::cout << "          ------------\n";
+    for (SizeType i = 0; i < height; ++i)
+    {
+        std::cout << "          <";
+        for (SizeType j = 0; j < width; ++j)
+        {
+            const char character = (gameBoard.get_cell_state(i, j)) ? '#' : ' ';
+            std::cout << character;
+        }
+        std::cout << "> " << std::endl;
+    }
+    std::cout << "          ------------\n";
+    clean_screen();
+}
 
 using ColourType = uint8_t;
 
@@ -86,7 +88,10 @@ bool events(GameBoard<height, width> &gameBoard)
                         gameBoard.move_down_if_valid();
                         break;
                     case SDLK_r:
-                        gameBoard.rotate_if_valid();
+                        gameBoard.rotate_clockwise_if_valid();
+                        break;
+                    case SDLK_u:
+                        gameBoard.rotate_counterclockwise_if_valid();
                         break;
                     default:
                         break;
@@ -123,16 +128,36 @@ void loop(GameBoard<height, width> &gameBoard)
 }
 
 /*
- * Render loop implementation
+ * Render loop implementation.
+ * If compiled with -DMODE_SDL, the game is rendered using SDL.
+ * If compiled without that flag, the game is rendered in the console.
  * @param[in] gameBoard the current tetris game board
- * @param[in] renderingEngine Rendering engine
- * @param[in] frameBuffer Frame buffer
  */
 template<SizeType height, SizeType width>
-void render(const GameBoard<height, width> &gameBoard,
-            const RenderingEngine &renderingEngine,
-            SDL_Texture * const frameBuffer)
+void render(const GameBoard<height, width> &gameBoard)
 {
+#ifdef MODE_SDL
+   render_sdl(gameBoard);
+#else
+   render_console(gameBoard);
+#endif
+}
+template<SizeType height, SizeType width>
+void render_sdl(const GameBoard<height, width> &gameBoard)
+{
+    static constexpr int screenWidth = 800;
+    static constexpr int screenHeight = 800;
+
+    static constexpr int gridWidth = 30;
+    static constexpr int gridHeight = 30;
+
+    static RenderingEngine renderingEngine(screenWidth, screenHeight, "Tetris");
+    static SDL_Texture *frameBuffer = SDL_CreateTexture(renderingEngine.getRenderer(),
+                                                    SDL_PIXELFORMAT_RGB332,
+                                                    SDL_TEXTUREACCESS_STREAMING,
+                                                    gridWidth,
+                                                    gridHeight);
+
     ColourType *pixelData;
 
     // length of a surface scanline in bytes
@@ -167,23 +192,12 @@ int main()
 {
     GameBoard<> gameBoard;
 
-    constexpr int screenWidth = 1000;
-    constexpr int screenHeight = 1000;
-
-    constexpr int gridWidth = 30;
-    constexpr int gridHeight = 30;
-
-    RenderingEngine renderingEngine(screenWidth, screenHeight, "Tetris");
-    SDL_Texture *texture = SDL_CreateTexture(renderingEngine.getRenderer(),
-            SDL_PIXELFORMAT_RGB332, SDL_TEXTUREACCESS_STREAMING, gridWidth,
-            gridHeight);
-
     // the main loop exits as soon as the events loop returns true
-    render(gameBoard, renderingEngine, texture);
+    render(gameBoard);
     while (!events(gameBoard))
     {
         loop(gameBoard);
-        render(gameBoard, renderingEngine, texture);
+        render(gameBoard);
     }
 
     return EXIT_SUCCESS;
