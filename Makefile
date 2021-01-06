@@ -170,32 +170,86 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
-src/renderingengine/renderingengine.o: src/renderingengine/renderingengine.cpp.o
+src/tetris/falling.o: src/tetris/falling.cpp.o
 
-.PHONY : src/renderingengine/renderingengine.o
+.PHONY : src/tetris/falling.o
 
 # target to build an object file
-src/renderingengine/renderingengine.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/src/renderingengine/renderingengine.cpp.o
-.PHONY : src/renderingengine/renderingengine.cpp.o
+src/tetris/falling.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/src/tetris/falling.cpp.o
+.PHONY : src/tetris/falling.cpp.o
 
-src/renderingengine/renderingengine.i: src/renderingengine/renderingengine.cpp.i
+src/tetris/falling.i: src/tetris/falling.cpp.i
 
-.PHONY : src/renderingengine/renderingengine.i
+.PHONY : src/tetris/falling.i
 
 # target to preprocess a source file
-src/renderingengine/renderingengine.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/src/renderingengine/renderingengine.cpp.i
-.PHONY : src/renderingengine/renderingengine.cpp.i
+src/tetris/falling.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/src/tetris/falling.cpp.i
+.PHONY : src/tetris/falling.cpp.i
 
-src/renderingengine/renderingengine.s: src/renderingengine/renderingengine.cpp.s
+src/tetris/falling.s: src/tetris/falling.cpp.s
 
-.PHONY : src/renderingengine/renderingengine.s
+.PHONY : src/tetris/falling.s
 
 # target to generate assembly for a file
-src/renderingengine/renderingengine.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/src/renderingengine/renderingengine.cpp.s
-.PHONY : src/renderingengine/renderingengine.cpp.s
+src/tetris/falling.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/src/tetris/falling.cpp.s
+.PHONY : src/tetris/falling.cpp.s
+
+src/tetris/shapes.o: src/tetris/shapes.cpp.o
+
+.PHONY : src/tetris/shapes.o
+
+# target to build an object file
+src/tetris/shapes.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/src/tetris/shapes.cpp.o
+.PHONY : src/tetris/shapes.cpp.o
+
+src/tetris/shapes.i: src/tetris/shapes.cpp.i
+
+.PHONY : src/tetris/shapes.i
+
+# target to preprocess a source file
+src/tetris/shapes.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/src/tetris/shapes.cpp.i
+.PHONY : src/tetris/shapes.cpp.i
+
+src/tetris/shapes.s: src/tetris/shapes.cpp.s
+
+.PHONY : src/tetris/shapes.s
+
+# target to generate assembly for a file
+src/tetris/shapes.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/src/tetris/shapes.cpp.s
+.PHONY : src/tetris/shapes.cpp.s
+
+src/tetris/types.o: src/tetris/types.cpp.o
+
+.PHONY : src/tetris/types.o
+
+# target to build an object file
+src/tetris/types.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/src/tetris/types.cpp.o
+.PHONY : src/tetris/types.cpp.o
+
+src/tetris/types.i: src/tetris/types.cpp.i
+
+.PHONY : src/tetris/types.i
+
+# target to preprocess a source file
+src/tetris/types.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/src/tetris/types.cpp.i
+.PHONY : src/tetris/types.cpp.i
+
+src/tetris/types.s: src/tetris/types.cpp.s
+
+.PHONY : src/tetris/types.s
+
+# target to generate assembly for a file
+src/tetris/types.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tetris.dir/build.make CMakeFiles/tetris.dir/src/tetris/types.cpp.s
+.PHONY : src/tetris/types.cpp.s
 
 # Help Target
 help:
@@ -209,9 +263,15 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/renderingengine/renderingengine.o"
-	@echo "... src/renderingengine/renderingengine.i"
-	@echo "... src/renderingengine/renderingengine.s"
+	@echo "... src/tetris/falling.o"
+	@echo "... src/tetris/falling.i"
+	@echo "... src/tetris/falling.s"
+	@echo "... src/tetris/shapes.o"
+	@echo "... src/tetris/shapes.i"
+	@echo "... src/tetris/shapes.s"
+	@echo "... src/tetris/types.o"
+	@echo "... src/tetris/types.i"
+	@echo "... src/tetris/types.s"
 .PHONY : help
 
 
