@@ -34,7 +34,7 @@ public:
 
     /*
      * Returns the current recommended update cycle threshold.
-     * Please call update() after every get_update_cycle_threshold() frames
+     * Please call update() after every get_update_cycle_threshold() frames.
      *
      * Then, for the recommended frame rate of 60 Hz a threshold of 60 means that the falling shape should
      * be updated once a second.
@@ -162,7 +162,7 @@ private:
 private:
     std::array<SizeType, height> _cellsInRow{ 0 }; ///< number of currently active cells in each row. Used for checking whether row is full.
     std::array<CellState, height * width> _landedBlocks{ 0 }; ///< the array of landed blocks
-    Falling _currentFalling{0, (width - 1) / 2, SHAPE_L }; //< the currently falling shape
+    Falling _currentFalling{0, (width - 1) / 2, SHAPE_L }; ///< the currently falling shape
     Falling _nextFalling{0, (width - 1) / 2, SHAPE_L }; ///< the shape which is going to fall down after the currently falling shape has settled
     bool _gameOver{ false }; ///< indicating whether game is terminated
     uint8_t _level{ 0 }; ///< player's current level
