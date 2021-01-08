@@ -24,3 +24,5 @@ Attention: The coordinates are used like matrix indices, for example
 
 In the main program a fully working tetris implementation using the above library is
 shown. Rendering is done with the library ncurses
+
+![The GUI in the terminal.](tetris_gui.png)
